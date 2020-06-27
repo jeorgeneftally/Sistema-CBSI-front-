@@ -1,0 +1,51 @@
+<div class="container-fluid mt-2">
+  <!--migas de pan-->
+  <nav aria-label="breadcrumb">
+   <ol class="breadcrumb">
+     <li class="breadcrumb-item"><a [routerLink]="['/inicio']">Inicio</a></li>
+     <li class="breadcrumb-item"><a [routerLink]="['/inicio/compañias']">Compañias</a></li>
+     <li class="breadcrumb-item active" aria-current="page">{{this.nombre}}</li>
+   </ol>
+ </nav>
+ <!--fin migas de pan-->
+   
+  <div class="card text-center mt-2">
+    <div class="card-header">
+      <b>{{nombre}}</b>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="card" style="width: 18rem;">
+           <a [routerLink]="['/inicio/matmayor',id]" >
+            <img class="card-img-top" height="300px" src="../../../../../assets/logo-mat.png" alt="Card image cap">
+          </a>
+            <div class="card-body">
+              <h5 class="card-title">Material Mayor</h5>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card" style="width: 18rem;">
+           <a [routerLink]="['/inicio/matmenor',id]" >
+            <img class="card-img-top" height="300px" src="../../../../../assets/traje.jpg" alt="Card image cap">
+          </a>
+            <div class="card-body">
+              <h5 class="card-title">Material Menor</h5>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card" style="width: 18rem;">
+           <a [routerLink]="['/inicio/detallebomberos',id]" >
+            <img class="card-img-top" height="300px" src="../../../../../assets/bombero.jpg" alt="Card image cap">
+          </a>
+            <div class="card-body">
+              <h5 class="card-title">Bomberos</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,156 @@
+<div class="container-fluid mt-2">
+
+  <!--migas de pan-->
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb" style="background-color:lavender">
+      <li class="breadcrumb-item"><a [routerLink]="['/inicio']">Inicio</a></li>
+      <li class="breadcrumb-item"><a [routerLink]="['/inicio/miinfo']">Mi Información</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Editar Perfil</li>
+    </ol>
+  </nav>
+  <!--fin migas de pan-->
+  <div class="card mb-2">
+    <div class="card-header" style="background-color:darkolivegreen">
+      <h5 class="mt-3" style="text-align: center;">Edita tu perfil</h5>
+    </div>
+    <div class="card-body" style="background-color: darkseagreen;">
+      <div class="row ">
+        <div class="col-md-12">
+          <!--formulario para crear/actualizar modelo-->
+          <form class="col-md-12" #userEditForm="ngForm" (ngSubmit)="onSubmit(userEditForm)">
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="image">
+                    <h5 style="text-align: center;">Imagen de Perfil</h5>
+                  </label>
+                  <div class="col-md-12" *ngIf="identity && identity.image">
+                    <img style="border-radius: 5%;" id="perfil" src="{{url+'user/image/'+identity.image}}"
+                      class="avatar_navbar" height="100%" width="100%">
+                  </div>
+                  <div *ngIf="!identity.image">
+                    <a class="btn btn-outline-info btn-image">
+                      <i class="fas fa-cloud-upload-alt fa-2x"></i>
+                    </a>
+                  </div>
+                  <hr>
+                  <angular-file-uploader [config]="afuConfig" (ApiResponse)="imageUpload($event)">
+                  </angular-file-uploader>
+                </div>
+              </div>
+              <div class="col-md-8">
+                <div class="row">
+                  <div class="form-group col-md-3">
+                    <label for="name">Nombres</label>
+                    <input type="text" name="name" #name="ngModel" [(ngModel)]="user.name" class="form-control"
+                      required>
+                    <small *ngIf="!name.valid && name.touched" class="invalid-feedback d-block">
+                      Debe ingresar el nombre
+                    </small>
+                  </div>
+                  <div class="form-group col-md-3">
+                    <label for="surname">Apellidos</label>
+                    <input type="text" name="surname" #surname="ngModel" [(ngModel)]="user.surname" class="form-control"
+                      required>
+                    <small *ngIf="!surname.valid && surname.touched" class="invalid-feedback d-block">
+                      Debe ingresar el apellido
+                    </small>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="email">E-mail</label>
+                    <input type="text" name="email" #email="ngModel" [(ngModel)]="user.email" class="form-control"
+                      required>
+                    <small *ngIf="!email.valid && email.touched" class="invalid-feedback d-block">
+                      Debe ingresar el E-mail
+                    </small>
+                  </div>
+                  <div class="form-group col-md-3">
+                    <label for="rut">Rut</label>
+                    <input type="text" name="rut" #rut="ngModel" [(ngModel)]="user.rut" class="form-control" required>
+                    <small *ngIf="!rut.valid && rut.touched" class="invalid-feedback d-block">
+                      Debe ingresar el rut
+                    </small>
+                  </div>
+                  <div class="form-group col-md-3">
+                    <label for="fecha_nacimiento">Fecha nacimiento</label>
+                    <input type="date" name="fecha_nacimiento" #fecha_nacimiento="ngModel"
+                      [(ngModel)]="user.fecha_nacimiento" class="form-control" required>
+                    <small *ngIf="!fecha_nacimiento.valid && fecha_nacimiento.touched" class="invalid-feedback d-block">
+                      Debe ingresar la fecha nacimiento
+                    </small>
+                  </div>
+                  <div class="form-group col-md-3">
+                    <label for="fecha_ingreso">Fecha ingreso</label>
+                    <input type="date" name="fecha_ingreso" #fecha_ingreso="ngModel" [(ngModel)]="user.fecha_ingreso"
+                      class="form-control" required>
+                    <small *ngIf="!fecha_ingreso.valid && fecha_ingreso.touched" class="invalid-feedback d-block">
+                      Debe ingresar la fecha nacimiento
+                    </small>
+                  </div>
+                  <div class="form-group col-md-3">
+                    <label for="telefono">Telefono</label>
+                    <input type="text" name="telefono" #telefono="ngModel" [(ngModel)]="user.telefono"
+                      class="form-control" required>
+                    <small *ngIf="!telefono.valid && telefono.touched" class="invalid-feedback d-block">
+                      Debe ingresar el telefono
+                    </small>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="direccion">Dirección</label>
+                    <input type="text" name="direccion" #direccion="ngModel" [(ngModel)]="user.direccion"
+                      class="form-control" required>
+                    <small *ngIf="!direccion.valid && direccion.touched" class="invalid-feedback d-block">
+                      Debe ingresar la dirección
+                    </small>
+                  </div>
+                  <div class="form-group col-md-3">
+                    <label for="profesion" class="label">Profesión</label>
+                    <input id="profesion" type="text" name="profesion" #profesion="ngModel" [(ngModel)]="user.profesion"
+                      class="form-control" required>
+                  </div>
+                  <div class="form-group col-md-3">
+                    <label for="talla_calzado">Talla calzado</label>
+                    <input type="number" min="20" max="50" name="talla_calzado" #talla_calzado="ngModel"
+                      [(ngModel)]="user.talla_calzado" class="form-control" required>
+                    <small *ngIf="!talla_calzado.valid && talla_calzado.touched" class="invalid-feedback d-block">
+                      Debe ingresar la talla calzado
+                    </small>
+                  </div>
+                  <div class="form-group col-md-3 ">
+                    <label for="talla_ropa">Talla ropa</label>
+                    <select name="talla_ropa" class="form-control" id="talla_ropa" #talla_ropa="ngModel"
+                      [(ngModel)]="user.talla_ropa">
+                      <option value="XS">XS</option>
+                      <option value="S">S</option>
+                      <option value="M">M</option>
+                      <option value="L">L</option>
+                      <option value="XL">XL</option>
+                      <option value="XXL">XXL</option>
+                    </select>
+                    <small *ngIf="!talla_ropa.valid && talla_ropa.touched" class="invalid-feedback d-block">
+                      Debe ingresar la talla ropa
+                    </small>
+                  </div>
+                  <div class="form-group col-md-3 ">
+                    <label for="servicio">Servicio</label>
+                    <select name="servicio" class="form-control" id="servicio" #servicio="ngModel"
+                      [(ngModel)]="user.servicio">
+                      <option value="En Servicio">En servicio</option>
+                      <option value="Disponible">Disponible</option>
+                      <option value="Fuera de servicio">Fuera de servicio</option>
+                    </select>
+                    <small *ngIf="!servicio.valid && servicio.touched" class="invalid-feedback d-block">
+                      Debe ingresar el servicio
+                    </small>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <input value="Guardar" type="submit" class="btn btn-success" [disabled]="userEditForm.invalid">
+          </form>
+          <!--fin formulario para crear/actualizar modelo-->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

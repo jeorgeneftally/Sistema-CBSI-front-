@@ -1,0 +1,167 @@
+<div class="container-fluid mt-2">
+  <!--migas de pan-->
+  <nav aria-label="breadcrumb">
+   <ol class="breadcrumb">
+     <li class="breadcrumb-item"><a [routerLink]="['/inicio']">Inicio</a></li>
+     <li class="breadcrumb-item"><a [routerLink]="['/inicio/compañias']">Compañias</a></li>
+     <li class="breadcrumb-item"><a [routerLink]="['/inicio/detalle',id]">{{nombre2}}</a></li>
+     <li class="breadcrumb-item active" aria-current="page">Material Mayor</li>
+   </ol>
+ </nav>
+ <!--fin migas de pan-->
+ 
+<div class="card text-center ">
+  <div class="card-header">
+    <b>Material Mayor {{this.nombre2}}</b> &nbsp; <button class="btn btn-sm btn-primary" (click)="mostrarModal()" title="Registrar equipo"><i
+      class="fas fa-pen-square"></i>
+    Registrar
+  </button>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-3" *ngFor="let i of materialmayor" >
+        <div class="card"  >
+          <a [routerLink]="['/inicio/detallebomba',i.id,i.nombre]" >
+            <img *ngIf="i.imagen" src="{{url+'materialmayor/image/'+i.imagen}}" class="avatar_navbar" style="max-width:100%;width:auto;height:300px;">
+            <img *ngIf="!i.imagen" src="../../../../../../assets/logo-mat.png" class="avatar_navbar" style="max-width:100%;width:auto;height:300px;">
+          </a>
+          <div class="card-body">
+            <h5 class="card-title">{{i.nombre}} &nbsp; <button class="btn btn-sm btn-primary" (click)="mostrarModal(i.id,i.nombre,i.descripcion,i.fecha_creacion,i.capacidad,i.motor,i.chasis,i.patente,i.marca,i.modelo,i.imagen)" title="Registrar equipo"><i
+              class="fas fa-pen-square"></i>
+          </button>
+          &nbsp;
+          <button  class="btn btn-danger btn-sm"
+            (click)="eliminarMaterial(i.id, i.nombre)" title="Eliminar">
+            <i class="fas fa-trash-alt"></i>
+          </button> </h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+ <!--modal para registrar/actualizar apoderado-->
+ <div class="modal" id="exampleModal" [ngStyle]="{'display':activarModal}" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content" style="background: #dddddd">
+      <div class="modal-header">
+        <h5 class="modal-title">Registro</h5>
+        <button (click)="ocultarModal()" type="button" class="close" data-dismiss="modal">
+          &times;
+        </button>
+      </div>
+      <div class="modal-body">
+        <!--formulario para crear/actualizar apoderado-->
+        <form class="col-md-12 ml-0 pl-0" #modelNew="ngForm" (ngSubmit)="onSubmit(modelNew)">
+          <div class="row">
+            <div class="form-group col-md-3">
+              <label for="name">Nombre </label>
+              <input type="text" name="nombre" #nombre="ngModel" [(ngModel)]="materialmayors.nombre" class="form-control"
+                required>
+              <small *ngIf="!nombre.valid && nombre.touched" class="invalid-feedback d-block">
+                Debe ingresar el nombre
+              </small>
+            </div>
+            <div class="form-group col-md-3">
+              <label for="fecha_creacion">Fecha creacion</label><br>
+              <input class="form-control" type="date" id="fecha_creacion" name="fecha_creacion"
+                #fecha_creacion="ngModel" [(ngModel)]="materialmayors.fecha_creacion" 
+                min="1990-01-01" max="2090-12-31" required>
+              <small *ngIf="!fecha_creacion.valid && fecha_creacion.touched" class="invalid-feedback d-block">
+                Debe ingresar la fecha de creacion
+              </small>
+            </div>
+            <div class="form-group col-md-3">
+              <label for="name">Capacidad</label>
+              <input type="text" name="capacidad" #capacidad="ngModel"
+                [(ngModel)]="materialmayors.capacidad" class="form-control"
+                required>
+              <small *ngIf="!capacidad.valid && capacidad.touched" class="invalid-feedback d-block">
+                Debe ingresar la capacidad
+              </small>
+            </div>
+            <div class="form-group col-md-3">
+              <label for="name">Motor</label>
+              <input  type="text" name="motor" #motor="ngModel"
+                [(ngModel)]="materialmayors.motor" class="form-control"
+                required>
+              <small *ngIf="!motor.valid && motor.touched" class="invalid-feedback d-block">
+                Debe ingresar el nro motor
+              </small>
+            </div>
+            <div class="form-group col-md-3">
+              <label for="name">chasis</label>
+              <input  type="text" name="chasis" #chasis="ngModel"
+                [(ngModel)]="materialmayors.chasis" class="form-control"
+                required>
+              <small *ngIf="!chasis.valid && chasis.touched" class="invalid-feedback d-block">
+                Debe ingresar el nro chasis
+              </small>
+            </div>
+            <div class="form-group col-md-3">
+              <label for="name">Patente</label>
+              <input  type="text" name="patente" #patente="ngModel"
+                [(ngModel)]="materialmayors.patente" class="form-control"
+                required>
+              <small *ngIf="!patente.valid && patente.touched" class="invalid-feedback d-block">
+                Debe ingresar el nro patente
+              </small>
+            </div>
+            <div class="form-group col-md-3">
+              <label for="name">Marca</label>
+              <input  type="text" name="marca" #marca="ngModel"
+                [(ngModel)]="materialmayors.marca" class="form-control"
+                required>
+              <small *ngIf="!marca.valid && marca.touched" class="invalid-feedback d-block">
+                Debe ingresar el nro patente
+              </small>
+            </div>
+            <div class="form-group col-md-3">
+              <label for="name">Modelo</label>
+              <input  type="text" name="modelo" #modelo="ngModel"
+                [(ngModel)]="materialmayors.modelo" class="form-control"
+                required>
+              <small *ngIf="!modelo.valid && modelo.touched" class="invalid-feedback d-block">
+                Debe ingresar el nro modelo
+              </small>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="name">Descripción</label>
+              <textarea rows="4" cols="50" type="text" name="descripcion" #descripcion="ngModel"
+                [(ngModel)]="materialmayors.descripcion" class="form-control"
+                required></textarea>
+              <small *ngIf="!descripcion.valid && descripcion.touched" class="invalid-feedback d-block">
+                Debe ingresar la descripcion
+              </small>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="image"><h5 style="text-align: center;">Imagen</h5></label>
+                <div class="avatar_mask mx-auto" *ngIf="materialmayors && materialmayors.imagen">
+                  <img id="perfil" height="100px" src="{{url+'materialmayor/image/'+materialmayors.imagen}}" class="avatar_navbar">
+                </div>
+                <div *ngIf="!materialmayors.imagen">
+                  <a class="btn btn-outline-info btn-image">
+                    <i class="fas fa-cloud-upload-alt fa-2x"></i>
+                  </a>
+                </div>
+                <hr>
+                <angular-file-uploader
+                 [config]="afuConfig" 
+                 (ApiResponse)="imageUpload($event)">
+                </angular-file-uploader>
+              </div>
+            </div>
+          </div>
+          <input type="submit" class="btn btn-success" value="Guardar" [disabled]="modelNew.invalid">
+        </form>
+        <!--fin formulario para crear/actualizar material-->
+      </div>
+      <div class="modal-footer">
+        <button type="button" (click)="ocultarModal()" class="btn btn-danger">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--fin modal para registrar/actualizar apoderado-->

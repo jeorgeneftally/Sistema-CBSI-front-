@@ -1,0 +1,122 @@
+<div class="container-fluid mt-2">
+  <!--migas de pan-->
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a [routerLink]="['/inicio']">Inicio</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Compañias</li>
+    </ol>
+  </nav>
+  <!--fin migas de pan-->
+
+  <div class="card text-center "  *ngIf="companias">
+    <div class="card-header">
+      <b>Compañias</b>  &nbsp; <button class="btn btn-sm btn-primary" (click)="mostrarModal()" title="Registrar compañia"><i
+        class="fas fa-pen-square"></i>
+      Registrar Compañia
+    </button>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-3" *ngFor="let i of companias.reverse()">
+          <div class="card" style="width: 18rem;">
+            <a [routerLink]="['/inicio/detalle',i.id]">
+              <img class="card-img-top"  height="300px"
+                src="{{url+'compania/image/'+i.imagen_logo}}" alt="Card image cap">
+            </a>
+            <div class="card-body">
+              <h5 class="card-title">{{i.nombre}}</h5>
+              <button class="btn btn-sm btn-primary" (click)="mostrarModal(i.id,i.nombre,i.descripcion,i.fecha_fundacion,i.imagen_logo,i.lema)" title="Registrar equipo"><i
+                class="fas fa-pen-square"></i>
+            </button>
+            &nbsp;
+            <button  class="btn btn-danger btn-sm"
+              (click)="eliminarCompania(i.id, i.nombre)" title="Eliminar">
+              <i class="fas fa-trash-alt"></i>
+            </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+ <!--modal para registrar/actualizar apoderado-->
+ <div class="modal" id="exampleModal" [ngStyle]="{'display':activarModal}" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content" style="background: #dddddd">
+      <div class="modal-header">
+        <h5 class="modal-title">Registro</h5>
+        <button (click)="ocultarModal()" type="button" class="close" data-dismiss="modal">
+          &times;
+        </button>
+      </div>
+      <div class="modal-body">
+        <!--formulario para crear/actualizar apoderado-->
+        <form class="col-md-12 ml-0 pl-0" #modelNew="ngForm" (ngSubmit)="onSubmit(modelNew)">
+          <div class="row">
+            <div class="form-group col-md-3">
+              <label for="name">Nombre </label>
+              <input type="text" name="nombre" #nombre="ngModel" [(ngModel)]="compania.nombre" class="form-control"
+                required>
+              <small *ngIf="!nombre.valid && nombre.touched" class="invalid-feedback d-block">
+                Debe ingresar el nombre
+              </small>
+            </div>
+            <div class="form-group col-md-3">
+              <label for="fecha_fundacion">Fecha fundacion</label><br>
+              <input class="form-control" type="date" id="fecha_fundacion" name="fecha_fundacion"
+                #fecha_fundacion="ngModel" [(ngModel)]="compania.fecha_fundacion" 
+                min="1990-01-01" max="2090-12-31" required>
+              <small *ngIf="!fecha_fundacion.valid && fecha_fundacion.touched" class="invalid-feedback d-block">
+                Debe ingresar la fecha de fundacion
+              </small>
+            </div>
+            <div class="form-group col-md-3">
+              <label for="lema">Lema</label>
+              <input type="text" name="lema" #lema="ngModel"
+                [(ngModel)]="compania.lema" class="form-control"
+                required>
+              <small *ngIf="!lema.valid && lema.touched" class="invalid-feedback d-block">
+                Debe ingresar el lema
+              </small>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="name">Descripción</label>
+              <textarea rows="4" cols="50" type="text" name="descripcion" #descripcion="ngModel"
+                [(ngModel)]="compania.descripcion" class="form-control"
+                required></textarea>
+              <small *ngIf="!descripcion.valid && descripcion.touched" class="invalid-feedback d-block">
+                Debe ingresar la descripcion
+              </small>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="image_logo"><h5 style="text-align: center;">Logo</h5></label>
+                <div class="avatar_mask mx-auto" *ngIf="compania && compania.imagen_logo">
+                  <img id="perfil" height="100px" src="{{url+'compania/image/'+compania.imagen_logo}}" class="avatar_navbar">
+                </div>
+                <div *ngIf="!compania.imagen_logo">
+                  <a class="btn btn-outline-info btn-image">
+                    <i class="fas fa-cloud-upload-alt fa-2x"></i>
+                  </a>
+                </div>
+                <hr>
+                <angular-file-uploader
+                 [config]="afuConfig" 
+                 (ApiResponse)="imageUpload($event)">
+                </angular-file-uploader>
+              </div>
+            </div>
+          </div>
+          <input type="submit" class="btn btn-success" value="Guardar" [disabled]="modelNew.invalid">
+        </form>
+        <!--fin formulario para crear/actualizar material-->
+      </div>
+      <div class="modal-footer">
+        <button type="button" (click)="ocultarModal()" class="btn btn-danger">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--fin modal para registrar/actualizar apoderado-->

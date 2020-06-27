@@ -1,0 +1,105 @@
+<div class="container-fluid mt-2">
+  <!--migas de pan-->
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a [routerLink]="['/Inicio']">Inicio</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Registro</li>
+    </ol>
+  </nav>
+  <!--fin migas de pan-->
+
+  <div class="card">
+    <div class="card-header text-center">
+      <b>Registro de Bomberos</b>
+    </div>
+    <div class="card-body">
+      <div class="sign-up-htm">
+        <form #registerForm="ngForm" (ngSubmit)="onRegister(registerForm)">
+          <div class="row">
+            <div class="form-group col-md-4">
+              <label for="name" class="label">Nombres</label>
+              <input id="name" type="text" name="name" #name="ngModel" [(ngModel)]="user.name" class="form-control"
+                required>
+            </div>
+            <div class="form-group col-md-4">
+              <label for="surname" class="label">Apellidos</label>
+              <input id="surname" type="text" name="surname" #surname="ngModel" [(ngModel)]="user.surname"
+                class="form-control" required>
+            </div>
+            <div class="form-group col-md-4">
+              <label for="email" class="label">E-mail</label>
+              <input id="email" type="email" name="email" #email="ngModel" [(ngModel)]="user.email" class="form-control"
+                required>
+            </div>
+         </div> 
+          <div class="row">
+            <div class="form-group col-md-3">
+              <label for="password" class="label">Contraseña</label>
+              <input id="password" type="password" name="password" #password="ngModel" [(ngModel)]="user.password"
+                class="form-control" data-type="password" required>
+            </div>
+            
+            <div class="form-group col-md-3">
+              <label for="rol_id">Rol</label>
+              <select name="rol_id" class="form-control" id="rol_id" #rol_id="ngModel" [(ngModel)]="user.rol_id">
+                <option *ngFor="let i of roles" value="{{i.id}}">{{i.rol}}</option>
+              </select>
+              <small *ngIf="!rol_id.valid && rol_id.touched" class="invalid-feedback d-block">
+                Debe ingresar rol
+              </small>
+            </div>
+            <div class="form-group col-md-3">
+              <label for="compania_id">Compañia</label>
+              <select name="compania_id" class="form-control" id="compania_id" #compania_id="ngModel" [(ngModel)]="user.compania_id">
+                <option *ngFor="let i of companias" value="{{i.id}}">{{i.nombre}}</option>
+              </select>
+              <small *ngIf="!compania_id.valid && compania_id.touched" class="invalid-feedback d-block">
+                Debe ingresar la compañia
+              </small>
+            </div>
+            <div class="form-group col-md-3">
+              <label for="cargo">Cargo</label>
+              <select name="cargo" class="form-control" id="cargo" #cargo="ngModel" [(ngModel)]="user.cargo">
+                <option value="Superintendente">Superintendente</option>
+                <option value="Comandante">Comandante</option>
+                <option value="Vicesuperintendente">Vicesuperintendente</option>
+                <option value="Secretario General">Secretario General</option>
+                <option value="Tesorero General">Tesorero General</option>
+                <option value="Director">Director</option>
+                <option value="Capitán">Capitán</option>
+                <option value="Teniente 1°">Teniente 1°</option>
+                <option value="Teniente 2°">Teniente 2°</option>
+                <option value="Teniente 3°">Teniente 3°</option>
+                <option value="Secretario de Compañia">Secretario de Compañia</option>
+                <option value="Tesorero de Compañia">Tesorero Tesorero de Compañia</option>
+                <option value="Ayudante de Compañia">Ayudante de Compañia</option>
+                <option value="Ayudante de Comandancia">Ayudante de Comandancia</option>
+                <option value="Inspector General">Inspector General</option>
+                <option value="Bombero Honorario">Bombero Honorario</option>
+                <option value="Bombero de Compañia">Bombero de Compañia</option>
+              </select>
+              <small *ngIf="!cargo.valid && cargo.touched" class="invalid-feedback d-block">
+                Debe ingresar cargo
+              </small>
+            </div>
+            <div class="form-group col-md-3">
+              <label for="malla_id">Nivel</label>
+              <select name="malla_id" class="form-control" id="malla_id" #malla_id="ngModel" [(ngModel)]="user.malla_id">
+                <option *ngFor="let i of mallas" value="{{i.id}}">{{i.nombre}}</option>
+              </select>
+              <small *ngIf="!malla_id.valid && malla_id.touched" class="invalid-feedback d-block">
+                Debe ingresar nivel
+              </small>  
+            </div>
+          </div>
+         
+          <div class="form-group">
+            <input type="submit" class="btn btn-primary" value="Registrar">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!--SECCION DE REGISTRAR-->
+
+</div>

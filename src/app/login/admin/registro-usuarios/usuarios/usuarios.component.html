@@ -1,0 +1,87 @@
+<div class="container-fluid mt-2">
+  <!--migas de pan-->
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a [routerLink]="['/inicio']">Inicio</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Bomberos</li>
+    </ol>
+  </nav>
+  <!--fin migas de pan-->
+
+  <div class="card">
+    <div class="card-body">
+      <!--ya no debemos hacer property binding, dado que utilizará los arreglos del servicio-->
+      <!--<app-product-list [datos]="filterProducts"></app-product-list>-->
+      <div class="card border-primary mb-3 text-center">
+        <div class="card-header"><b>Listado de Bomberos</b></div>
+        <div class="card-body text-primary">
+          <div class="table-responsive">
+            <!--llamamos a los nuuevos arreglos declarados en productService, y condicionamos-->
+            <table class="table table-striped">
+              <thead>
+                <!-- esto indica el cabecero de la tabla-->
+                <tr style="background-color:olivedrab;">
+                  <th>#</th>
+                  <th>Imagen</th>
+                  <th>Nombre del Usuario</th>
+                  <th>Email</th>
+                  <th>Compañia</th>
+                  <th>Rol</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!--aqui ocupamos a los arreglos del servicio de entrevistas-->
+                <tr *ngFor="let i of usuarios ;let indice=index">
+                  <td>{{indice+1}}</td>
+                  <td *ngIf="i.image">
+                    <div class="avatar_mask mx-auto">
+                      <img src="{{url+'user/image/'+i.image}}" class="avatar_navbar" height="70px" style="border-radius: 5%;">
+                    </div>
+                  </td>
+                  <td *ngIf="!i.image">
+                    <a class="btn btn-outline-info btn-image">
+                      <i class="fas fa-cloud-upload-alt fa-2x"></i>
+                    </a>
+                  </td>
+                  <td>{{i.name +' '+i.surname}}</td>
+                  <td>{{i.email}}</td>
+                  <td>{{i.compania.nombre}}</td>
+                  <td>{{i.rol.rol}}</td>
+                  <td>
+                    &nbsp;
+                    <button *ngIf="i.estado=='Activo'" class="btn btn-danger btn-sm"
+                      (click)="disableUser(i.id,i.name,i.surname)">
+                      <i class="fas fa-ban"></i>Deshabilitar
+                    </button>
+                    <button *ngIf="i.estado=='Inactivo'" class="btn btn-success btn-sm"
+                      (click)="habilitaUser(i.id,i.name,i.surname)">
+                      Habilitar
+                    </button>
+                    &nbsp;
+                    <button  class="btn btn-primary btn-sm"
+                      (click)="roleB(i.id,i.name,i.surname)">
+                      Cambiar a bombero
+                    </button>
+                    &nbsp;
+                    <button  class="btn btn-primary btn-sm"
+                      (click)="roleA(i.id,i.name,i.surname)">
+                      Cambiar a administrador
+                    </button>
+                    &nbsp;
+                    <button  class="btn btn-primary btn-sm"
+                      (click)="roleO(i.id,i.name,i.surname)">
+                      Cambiar a oficial
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+              <!--FIN DE BODY-->
+            </table>
+          </div>
+          <!--FIN DE SECCION TABLA TABLA-->
+        </div>
+        <!--FIN HEADER CARD-->
+      </div>
+      <!--FIN BORDER CARD-->
+    </div>

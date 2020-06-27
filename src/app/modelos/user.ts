@@ -1,0 +1,24 @@
+export class User{
+    id:number;
+    name:string;
+    surname:string;
+    email:string;
+    password:string;
+    image:string;
+    profesion:string;
+    rut:string;
+    fecha_nacimiento:Date;
+    fecha_ingreso:Date;
+    direccion:string;
+    telefono:string;
+    talla_calzado:string;
+    talla_ropa:string;
+    cargo:string;
+    numero_registro:number;
+    servicio:string;
+    estado:string;
+    rol_id:number;
+    compania_id:number;
+    malla_id:number;
+    conductor_id:number;
+}

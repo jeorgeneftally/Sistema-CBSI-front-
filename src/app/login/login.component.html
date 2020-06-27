@@ -1,0 +1,33 @@
+<div class="container-fluid">
+  <div class="row h-100">
+    <div class="col-md-3 bg-white px-4 pt-4 rounded m-auto h-75 shadow"  >
+      <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)"  >
+        <h3 class="text-center mb-3 pb-4 border-bottom">Cuerpo de Bomberos San Ignacio</h3>
+        <p class="lead text-center">Login CBSI</p>
+        <label for="email">Email</label>
+        <div class="form-group input-group">
+          <input type="email" class="form-control" id="email" name="email" #email="ngModel" [(ngModel)]="user.email"
+            placeholder="Ingrese email">
+          <small *ngIf="!email.valid && email.touched" class="invalid-feedback d-block">
+            Debe ingresar el E-mail
+          </small>
+        </div>
+        <div class="form-group has-feedback">
+          <label for="password">Contraseña</label>
+          <input type="password" class="form-control" id="password" name="password" #password="ngModel"
+            [(ngModel)]="user.password" data-type="password" placeholder="Contraseña">
+          <small *ngIf="!password.valid && password.touched" class="invalid-feedback d-block">
+            Debe ingresar su contraseña
+          </small>
+        </div>
+        <!-- <div class="form-group form-check">
+          <input type="checkbox" class="form-check-input" id="exampleCheck1">
+          <label class="form-check-label mb-5" for="exampleCheck1">Recordarme</label>
+        </div>-->
+        <div>
+          <button type="submit" class="btn btn-block btn-lg">Iniciar Sesión</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

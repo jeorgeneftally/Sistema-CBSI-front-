@@ -1,0 +1,106 @@
+<div class="container-fluid">
+  <div class="row mt-2">
+    <div class="col-md-12">
+      <!--migas de pan-->
+      <nav aria-label="breadcrumb ">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a [routerLink]="['/inicio']">Inicio</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Mi Información</li>
+        </ol>
+      </nav>
+      <!--fin migas de pan-->
+    </div>
+    <div class="col-md mx-auto">
+      <div class="card">
+        <div class="card-header" style="background-color:mediumaquamarine">
+          <h5 style="text-align: center;">Mi Infomación
+            &nbsp; <a [routerLink]="['/inicio/editarperfil']" class="btn btn-primary btn-sm">Editar Información</a>
+          </h5>
+        </div>
+        <div class="card-body" style="background-color: gray;">
+          <div class="row ">
+            <div class="col-md-6 mx-auto">
+              <div class="col-md mx-auto" *ngIf="identity && identity.image">
+                <img style="border-radius: 5%;" id="perfil" src="{{url+'user/image/'+identity.image}}" class="avatar"
+                  height="100%" width="100%">
+              </div>
+              <div class="col-md mx-auto" *ngIf="!identity && !identity.image">
+                <img style="border-radius: 5%;" id="perfil" src="../../../../../assets/perfil.png" class="avatar"
+                  height="200px" width="200px">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="col-md mx-auto" style="text-align: center;">
+                <div class="alert alert-secondary" *ngIf="this.identity.servicio=='Disponible'" role="alert">
+                  SU ESTADO ES DISPONIBLE!
+                </div>
+                <div class="alert alert-success" *ngIf="this.identity.servicio=='En Servicio'" role="alert">
+                  SU ESTADO ES EN SERVICIO!
+                </div>
+                <div class="alert alert-danger" *ngIf="this.identity.servicio=='Fuera de servicio'" role="alert">
+                  SU ESTADO ES FUERA DE SERVICIO!
+                </div>
+              </div>
+              <table class="table table-striped">
+                <tbody>
+                  <tr>
+                    <td><b>Nombre Completo:</b> </td>
+                    <td>{{identity.name+' '+identity.surname}}</td>
+                  </tr>
+                  <tr>
+                    <td><b>Rut:</b></td>
+                    <td>{{identity.rut}}</td>
+                  </tr>
+                  <tr>
+                    <td><b>Email:</b> </td>
+                    <td>{{identity.email}}</td>
+                  </tr>
+                  <tr>
+                    <td><b>Fecha de Nacimiento:</b></td>
+                    <td> {{identity.fecha_nacimiento}}</td>
+                  </tr>
+                  <tr>
+                    <td><b>Fecha de Ingreso:</b> </td>
+                    <td>{{identity.fecha_ingreso}}</td>
+                  </tr>
+                  <tr>
+                    <td><b>Telefono:</b></td>
+                    <td>{{identity.telefono}}</td>
+                  </tr>
+                  <tr>
+                    <td><b>Dirección:</b></td>
+                    <td> {{identity.direccion}}</td>
+                  </tr>
+                  <tr>
+                    <td><b>Profesión:</b></td>
+                    <td>{{identity.profesion}}</td>
+                  </tr>
+                  <tr>
+                    <td><b>Talla de Calzado:</b></td>
+                    <td>{{identity.talla_calzado}}</td>
+                  </tr>
+                  <tr>
+                    <td><b>Talla de Ropa:</b> </td>
+                    <td>{{identity.talla_ropa}}</td>
+                  </tr>
+                  <tr>
+                    <td><b>Cargo:</b> </td>
+                    <td>{{identity.cargo}}</td>
+                  </tr>
+                  <tr>
+                    <td><b>Estado:</b> </td>
+                    <td>{{identity.estado}}</td>
+                  </tr>
+                  <tr>
+                    <td><b>Numero Registro:</b> </td>
+                    <td>{{identity.numero_registro}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

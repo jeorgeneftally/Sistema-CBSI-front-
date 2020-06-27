@@ -1,0 +1,79 @@
+<div class="container-fluid" >
+  <div class="row pt-2" style="text-align: center;">
+    <div class="col-md 12">
+      <span style="border-image: initial; border: 3px solid green;"><b>En Servicio</b></span> &nbsp;
+      <span style="border-image: initial; border: 3px solid blue;"><b>Disponible</b></span> &nbsp;
+      <span style="border-image: initial; border: 3px solid red;"><b>Fuera de Servicio</b></span> &nbsp;
+    </div>
+  </div>
+  
+  <div class="row pt-4" style="text-align: center;">
+    <div class="col-md-3 mx-auto"  >
+     <h5>Comandancia</h5>
+     <div class="row">
+       <div class="col-md-6 pt-2 pb-2" *ngFor="let i of comandancia">
+        <div id="borde" class="card" [ngStyle]="{'border-color':getColor(i.estado)}">
+          <a [routerLink]="['/inicio/detallebomba',i.id,i.nombre]" >
+            <img  *ngIf="i.imagen" class="card-img-top" src="{{url+'materialmayor/image/'+i.imagen}}" alt="Card image cap" width="100px" height="100px">
+             <img *ngIf="!i.imagen" class="card-img-top" src="../../../../../assets/logo-mat.png" alt="Card image cap" width="100px" height="100px">
+          </a>  <div class="card-body">
+            <h5 class="card-title">{{i.nombre}}</h5>
+          </div>
+        </div>
+       </div>
+     </div>   
+    </div>
+    <div class="col-md-3 mx-auto">
+      <h5>Primera Compañia</h5>
+      <div class="row">
+        <div class="col-md-6 pt-2 pb-2"  *ngFor="let i of primera">
+         <div id="borde" class="card" [ngStyle]="{'border-color':getColor(i.estado)}">
+          <a [routerLink]="['/inicio/detallebomba',i.id,i.nombre]" >
+            <img  *ngIf="i.imagen" class="card-img-top" src="{{url+'materialmayor/image/'+i.imagen}}" alt="Card image cap" width="100px" height="100px">
+             <img *ngIf="!i.imagen" class="card-img-top" src="../../../../../assets/logo-mat.png" alt="Card image cap" width="100px" height="100px">
+          </a> <div class="card-body">
+             <h5 class="card-title">{{i.nombre}}</h5>
+           </div>
+         </div>
+        </div>
+      </div>   
+     </div>
+     <div class="col-md-3 mx-auto" >
+      <h5>Segunda Compañia</h5>
+      <div class="row">
+        <div class="col-md-6 pt-2 pb-2" *ngFor="let i of segunda">
+         <div id="borde" class="card" [ngStyle]="{'border-color':getColor(i.estado)}">
+          <a [routerLink]="['/inicio/detallebomba',i.id,i.nombre]" >
+            <img  *ngIf="i.imagen" class="card-img-top" src="{{url+'materialmayor/image/'+i.imagen}}" alt="Card image cap" width="100px" height="100px">
+             <img *ngIf="!i.imagen" class="card-img-top" src="../../../../../assets/logo-mat.png" alt="Card image cap" width="100px" height="100px">
+          </a>
+           <div class="card-body">
+             <h5 class="card-title">{{i.nombre}}</h5>
+           </div>
+         </div>
+        </div>
+      </div>   
+     </div>
+     <div class="col-md-3 mx-auto" >
+      <h5>Tercera Compañia</h5>
+      <div class="row">
+        <div class="col-md-6 pt-2 pb-2" *ngFor="let i of tercera">
+         <div id="borde" class="card"  [ngStyle]="{'border-color':getColor(i.estado)}">
+          <a [routerLink]="['/inicio/detallebomba',i.id,i.nombre]" >
+          <img  *ngIf="i.imagen" class="card-img-top" src="{{url+'materialmayor/image/'+i.imagen}}" alt="Card image cap" width="100px" height="100px">
+           <img *ngIf="!i.imagen" class="card-img-top" src="../../../../../assets/logo-mat.png" alt="Card image cap" width="100px" height="100px">
+          </a> 
+           <div class="card-body">
+             <h5 class="card-title">{{i.nombre}}</h5>
+           </div>
+         </div>
+        </div>
+      </div>   
+     </div>
+  </div>   
+  <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4"></div>
+    <div class="col-md-4"></div>
+  </div> 
+</div>

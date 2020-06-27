@@ -1,0 +1,146 @@
+<div class="container-fluid mt-2" *ngIf="materialmayor" >
+  <div class="card text-center ">
+    <div class="card-header">
+      <b>{{this.materialmayor.nombre}}</b>
+    </div>
+    <div class="row mr-1 ml-1 mb-2">
+      <div class="col-md-4  mt-2">
+        <div class="card text-center ">
+          <div class="col-md-10 offset-1 mt-2 mb-2">
+            <div class="card" style="width: 18rem;">
+              <img *ngIf="materialmayor.imagen" class="card-img-top" width="100%" height="100%"
+                src="{{url+'materialmayor/image/'+this.materialmayor.imagen}}" alt="Card image cap">
+              <img *ngIf="!materialmayor.imagen" class="card-img-top" src="../../../../../assets/logo-mat.png" alt="Card image cap" width="100%" height="100%">
+           
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <div class="col-md-8 mt-2">
+        <div class="accordion" id="accordionExample">
+          <div class="card">
+            <div class="card-header" id="headingTwo">
+              <h2 class="mb-0">
+                <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse"
+                  data-target="#collapseTwo1" aria-expanded="false" aria-controls="collapseTwo">
+                  Información
+                </button>
+              </h2>
+            </div>
+            <div id="collapseTwo1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+              <div class="card-body">
+                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf
+                moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.
+                Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda
+                shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea
+                proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim
+                aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header" id="headingTwo">
+              <h2 class="mb-0">
+                <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse"
+                  data-target="#collapseTwo2" aria-expanded="false" aria-controls="collapseTwo">
+                  Mantenciones
+                </button>
+              </h2>
+            </div>
+            <div id="collapseTwo2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+              
+              <table class="table table-striped table-dark" *ngFor="let i of mantencion" >
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Proxima Fecha</th>
+                    <th scope="col">Handle</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th   scope="row">1</th>
+                    <td>{{i.fecha}}</td>
+                    <td>{{i.proxima_fecha}}</td>
+                    <td>@mdo</td>
+                  </tr>
+                
+                </tbody>
+              </table>
+              <div class="card-body" *ngFor="let i of mantencion">
+               
+                <div class="card-header"><h5>Mantención N° {{i.id}}</h5></div>
+                    <div class="row">
+                      
+
+                    <div class="col-md-4" >
+                      <p style="text-align: left;">Fecha: {{i.fecha}}</p>
+                      <p style="text-align: left;">Proxima fecha: {{i.proxima_fecha}}</p>
+                      <p style="text-align: left;">Kilometraje: {{i.kilometraje}}</p>
+                    </div>
+                    <div class="col-md-4">
+                      <p style="text-align: left;">Taller: {{i.taller}}</p>
+                      <p style="text-align: left;">Mecanico: {{i.nombre_mecanico}}</p>
+                      
+                      <p style="text-align: left;">Registrado por: </p>
+                    </div>
+                    <div class="col-md-4">
+                      <p style="text-align: left;">descripción: {{i.descripcion}}</p>
+                    </div>
+                  </div>
+
+                  
+             <hr>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header" id="headingTwo">
+              <h2 class="mb-0">
+                <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse"
+                  data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  Revisiones Técnicas
+                </button>
+              </h2>
+            </div>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+              <div class="card-body">
+                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf
+                moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.
+                Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda
+                shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea
+                proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim
+                aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header" id="headingThree">
+              <h2 class="mb-0">
+                <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse"
+                  data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                  Inventario
+                </button>
+              </h2>
+            </div>
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+              <div class="card-body">
+                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf
+                moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.
+                Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda
+                shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea
+                proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim
+                aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+</div>
